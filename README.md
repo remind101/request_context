@@ -1,6 +1,6 @@
 # RequestContext
 
-This is a gem that adds a hash containing request information to `Thread.current[:request\_context]`
+This is a gem that adds a hash containing request information to `Thread.current[:request_context]`
 
 ## Installation
 
