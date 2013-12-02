@@ -37,26 +37,5 @@ module RequestContext
       Thread.current[:request_context] = request_context
     end
 
-    # Public: Runs the block with the given request context set.
-    #
-    # Examples
-    #
-    #   RequestContext.request_context
-    #   # => {url: 'https://www.remind101.com'}
-    #
-    #   RequestContext.with_request_context({url: 'https://www.remind101.com/users/sign_in'}) do
-    #     RequestContext.request_context
-    #     # => {url: 'https://www.remind101.com/users/sign_in'}
-    #   end
-    #
-    #   RequestContext.request_context
-    #   # => {url: 'https://www.remind101.com'}
-    def with_request_context(request_context)
-      last_request_context = RequestContext.request_context
-      RequestContext.request_context = request_context
-      yield
-    ensure
-      RequestContext.request_context = last_request_context
-    end
   end
 end
