@@ -1,7 +1,6 @@
 module Rack
 
-  # Public: Rack middleware that stores request data in a
-  # thread local variable.
+  # Public: Rack middleware that stores Rack Request in a thread local variable.
   #
   # app - The Rack app.
   #
@@ -9,8 +8,8 @@ module Rack
   #
   #   use Rack::RequestContext
   #
-  #   puts "Thread.current[:request_context]"
-  #   # => {origo: nil, url: 'https...', user_agent: 'Mozilla...', referrer: 'http...', ip: '1.1.1.1'}
+  #   puts "Thread.current[:request_context].url"
+  #   # => 'https://www.remind101.com'
   class RequestContext
 
     def initialize(app)
@@ -20,6 +19,8 @@ module Rack
     def call(env)
       ::RequestContext.request_context = Rack::Request.new(env)
       @app.call(env)
+    ensure
+      ::RequestContext.request_context = nil
     end
 
   end

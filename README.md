@@ -1,6 +1,7 @@
 # RequestContext
 
-This is a gem that adds a hash containing request information to `Thread.current[:request_context]`
+This is a gem that adds Rack::Request to `Thread.current[:request_context]`.
+This may be useful, for example, if you want access to request information in your models.
 
 ## Installation
 
