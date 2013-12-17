@@ -17,7 +17,8 @@ module Rack
     end
 
     def call(env)
-      ::RequestContext.request_context = Rack::Request.new(env)
+      env_dup = env.dup.freeze # make sure env var isn't modified
+      ::RequestContext.request_context = Rack::Request.new(env_dup)
       @app.call(env)
     ensure
       ::RequestContext.request_context = nil
